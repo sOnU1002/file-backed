@@ -11,12 +11,7 @@ const Footer = () => {
             to="/"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
-            <img
-              width={170}
-              height={230}
-              src={Logo}
-              alt="EncryptShare Logo"
-            />
+            
           </Link>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-blue-500 sm:mb-0 dark:text-gray-400">
             <li>
