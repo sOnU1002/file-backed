@@ -20,7 +20,7 @@ const Header = () => {
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img src={Logo} width={170} height={230} alt="EncryptShare Logo" />
+         
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
           <SignedOut>
