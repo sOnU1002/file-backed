@@ -174,113 +174,121 @@ const UploadForm = ({ progress }) => {
 
   return (
     <div className="text-center">
-      <div className="flex items-center justify-center w-full">
-        <label
-          htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-lg cursor-pointer bg-blue-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+  {/* Dropzone Section */}
+  <div className="flex items-center justify-center w-full">
+    <label
+      htmlFor="dropzone-file"
+      className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-blue-500 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:hover:border-gray-400 dark:hover:bg-gray-700 transition-all rounded-xl shadow-md cursor-pointer"
+    >
+      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+        <svg
+          className="w-14 h-14 mb-3 text-blue-500 dark:text-gray-300"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 16"
         >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg
-              className="w-12 h-12 mb-4 text-blue-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-              />
-            </svg>
-            <p className="mb-2 text-lg md:text-2xl text-gray-500 dark:text-gray-400">
-              <span className="font-semibold">Click to upload</span> or{" "}
-              <strong className="text-blue-500">drag</strong> and{" "}
-              <strong className="text-blue-500">drop</strong>
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              (Max Size: 10MB )
-            </p>
-          </div>
-          <input
-            id="dropzone-file"
-            type="file"
-            className="hidden"
-            onChange={(event) => onFileSelect(event.target.files[0])}
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
           />
-        </label>
+        </svg>
+        <p className="mb-2 text-lg md:text-xl text-gray-700 dark:text-gray-300">
+          <span className="font-semibold">Click to upload</span> or{" "}
+          <span className="text-blue-500 font-semibold">drag & drop</span>
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          (Max Size: <span className="font-semibold">10MB</span>)
+        </p>
       </div>
-
-      {file && <FilePreview file={file} removeFile={() => setFile(null)} />}
-
-      <div className="my-6 flex flex-col items-start">
-        <label
-          htmlFor="receiver-email-input"
-          className="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-        >
-          Enter Receiver's Email Adress
-        </label>
-        <input
-          required={true}
-          type="email"
-          placeholder="Enter Receiver's Email Adress"
-          value={receiverEmail}
-          onChange={(e) => setReceiverEmail(e.target.value)}
-          id="receiver-email-input"
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-
-      <AdvancedPasswordInput
-        seePassword={seePassword}
-        setSeePassword={setSeePassword}
-        filePassword={filePassword}
-        setFilePassword={setFilePassword}
-        idValue="file-password-encrypt"
-        placeValue="Set File Password"
+      <input
+        id="dropzone-file"
+        type="file"
+        className="hidden"
+        onChange={(event) => onFileSelect(event.target.files[0])}
       />
+    </label>
+  </div>
 
-      {errorMsg && (
-        <div role="alert" className="alert alert-error my-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="stroke-current shrink-0 h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span className="text-white font-bold">Error! {errorMsg}</span>
-        </div>
-      )}
-      <p className="font-bold py-5 max-sm:text-sm">
-        Note: Remember to copy your password and send to the receiver. Because
-        of our security policy, we don't send file passwords.
-      </p>
-      <div className="flex flex-col w-full items-center">
+  {/* File Preview */}
+  {file && <FilePreview file={file} removeFile={() => setFile(null)} />}
 
-        <CopyToClipboardBtn filePassword={filePassword} />
+  {/* Email Input */}
+  <div className="my-6 w-full max-w-md mx-auto">
+    <label
+      htmlFor="receiver-email-input"
+      className="block text-lg font-medium text-gray-900 dark:text-gray-200"
+    >
+      Enter Receiver's Email Address
+    </label>
+    <input
+      required
+      type="email"
+      placeholder="Enter Receiver's Email"
+      value={receiverEmail}
+      onChange={(e) => setReceiverEmail(e.target.value)}
+      id="receiver-email-input"
+      className="block w-full mt-2 p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all"
+    />
+  </div>
 
-        {progress === 0 ? (
-          <ProgressBar progress={progress} />
-        ) : (
-          <button
-            disabled={!file}
-            className="p-2 bg-blue-500 text-white w-[30%] rounded-full mt-5 disabled:bg-gray-400"
-            onClick={(e) => upload(e)}
-          >
-            Send Now
-          </button>
-        )}
-      </div>
+  {/* Password Input */}
+  <AdvancedPasswordInput
+    seePassword={seePassword}
+    setSeePassword={setSeePassword}
+    filePassword={filePassword}
+    setFilePassword={setFilePassword}
+    idValue="file-password-encrypt"
+    placeValue="Set File Password"
+  />
+
+  {/* Error Message */}
+  {errorMsg && (
+    <div className="w-full bg-red-500 text-white py-2 px-4 mt-4 rounded-md flex items-center gap-2">
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span className="font-bold">Error! {errorMsg}</span>
     </div>
+  )}
+
+  {/* Security Note */}
+  <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+    🔒 <strong>Important:</strong> Copy and send the password to the receiver.
+    Due to security reasons, we do not send file passwords.
+  </p>
+
+  {/* Buttons & Upload Progress */}
+  <div className="flex flex-col w-full items-center mt-6">
+    <CopyToClipboardBtn filePassword={filePassword} />
+
+    {progress === 0 ? (
+      <ProgressBar progress={progress} />
+    ) : (
+      <button
+        disabled={!file}
+        className="mt-5 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all disabled:bg-gray-400"
+        onClick={(e) => upload(e)}
+      >
+        Send Now
+      </button>
+    )}
+  </div>
+</div>
+
   );
 };
 
